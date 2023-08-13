@@ -1,11 +1,12 @@
 import { Box, Grid, Paper, Typography } from '@mui/material';
 import { FlagIcon } from 'react-flag-kit';
+
 import PieChart from '../../../../components/charts/pieChart.ts';
 
 const ModalView = () => {
   return (
     <>
-      <Grid sx={{ boxShadow: 5, borderRadius: 3 }} bgcolor={'white'} >
+      <Grid sx={{ boxShadow: 5, borderRadius: 3 }} bgcolor={'white'}>
         <Box padding={1} paddingRight={2} paddingLeft={2} style={{ display: 'flex', columnGap: '1rem', alignItems: 'center', justifyContent: 'space-between' }}>
           <Typography variant="h5" color="CaptionText">
             1. USA

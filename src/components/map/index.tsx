@@ -2,6 +2,7 @@ import { HighchartsReact } from 'highcharts-react-official';
 import * as Highcharts from 'highcharts';
 import highchartsMap from 'highcharts/modules/map';
 import { useEffect, useState, useRef } from 'react';
+
 import { IMaps } from './maps.types';
 
 highchartsMap(Highcharts);
@@ -108,13 +109,8 @@ const Map = ({ props }: { props: IMaps }) => {
       stops: [
         [0, '#EFEFFF'],
         [0.5, '#f50505' as any],
-        [
-          1,
-          Highcharts.color('#f50505')
-            .brighten(-0.5)
-            .get(),
-        ],
-      ],
+        [1, Highcharts.color('#f50505').brighten(-0.5).get()]
+      ]
     },
 
     mapView: {
@@ -145,7 +141,7 @@ const Map = ({ props }: { props: IMaps }) => {
         },
         // mapData: mapOptioin,
         // borderColor: '#A0A0A0',
-        nullColor: '#D3D3D3',
+        nullColor: '#D3D3D3'
       }
     ] as any
   };

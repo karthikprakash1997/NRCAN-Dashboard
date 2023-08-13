@@ -1,10 +1,11 @@
 import { Box, Button, ButtonGroup, Grid, Typography } from '@mui/material';
-import Map from '../../../../components/map';
 import { useState } from 'react';
 import { BiFilter } from 'react-icons/bi';
+
+import Map from '../../../../components/map';
 import { IMaps } from '../../../../components/map/maps.types';
 
-const MapView = ({handleModelChange}:{handleModelChange: ()=> void}) => {
+const MapView = ({ handleModelChange }: { handleModelChange: () => void }) => {
   const [view, setView] = useState<IMaps>({
     backgroundColor: '#4b96af',
     projection: 'WebMercator'
@@ -39,7 +40,7 @@ const MapView = ({handleModelChange}:{handleModelChange: ()=> void}) => {
                 3D
               </Button>
             </ButtonGroup>
-            <BiFilter size={30} color="white" cursor={'pointer'} onClick={handleModelChange}/>
+            <BiFilter size={30} color="white" cursor={'pointer'} onClick={handleModelChange} />
           </Grid>
         </Box>
         <Map props={view} />

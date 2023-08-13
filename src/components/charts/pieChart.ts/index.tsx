@@ -1,25 +1,26 @@
 import { HighchartsReact } from 'highcharts-react-official';
 import * as Highcharts from 'highcharts';
+
 import { IPieChartTypes } from '../charts.types';
 
-const PieChart = ({props}:{props: IPieChartTypes}) => {
+const PieChart = ({ props }: { props: IPieChartTypes }) => {
   const chartOptions = {
     chart: {
-        type: "pie",
-        width: props.height, // Set the width of the chart
-        height: props.width, // Set the height of the chart
-        borderRadius: 12,
-        zoom:2
-      },
-      title: {
-        text: undefined, // No title
-      },
+      type: 'pie',
+      width: props.height, // Set the width of the chart
+      height: props.width, // Set the height of the chart
+      borderRadius: 12,
+      zoom: 2
+    },
+    title: {
+      text: undefined // No title
+    },
     subtitle: {
       useHTML: true,
-      verticalAlign: 'middle',
+      verticalAlign: 'middle'
     },
-    credits:{
-        enabled:false
+    credits: {
+      enabled: false
     },
     legend: {
       align: 'bottom',
@@ -27,10 +28,10 @@ const PieChart = ({props}:{props: IPieChartTypes}) => {
       layout: 'vertical',
       x: 0,
       y: 100
-  },
+    },
 
     tooltip: {
-     enabled:true
+      enabled: true
     },
 
     // plotOptions: {
@@ -67,7 +68,7 @@ const PieChart = ({props}:{props: IPieChartTypes}) => {
     //     ]
     //   }
     // ]
-    series:props.series
+    series: props.series
   };
   return (
     <>

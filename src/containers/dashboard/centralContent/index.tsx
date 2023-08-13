@@ -1,7 +1,8 @@
 import { Box, Fade, Grid, Modal, Tab, Tabs } from '@mui/material';
+import { useState } from 'react';
+
 import MapView from './mapView';
 import ModalView from './modalView';
-import { useState } from 'react';
 import { RichObjectTreeView } from '../../../components';
 
 const style = {

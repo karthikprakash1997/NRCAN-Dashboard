@@ -13,6 +13,6 @@ const Topography = () => {
       {/* </Provider> */}
     </>
   );
-}
+};
 
 export default Topography;

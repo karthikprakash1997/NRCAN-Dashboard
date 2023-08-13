@@ -61,15 +61,15 @@ export const RichObjectTreeView = () => {
       defaultExpanded={['1']}
       defaultCollapseIcon={
         <Checkbox
-          checked={true}
+          checked
           indeterminate={false}
           // onChange={handleChange1}
         />
       }
       defaultExpandIcon={
         <Checkbox
-          checked={true}
-          indeterminate={true}
+          checked
+          indeterminate
           // onChange={handleChange1}
         />
       }

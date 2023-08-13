@@ -1,8 +1,9 @@
 import React from 'react';
-import Dashboard from './containers/dashboard';
-import AppBar from './containers/navBar';
 import { Grid } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+import Dashboard from './containers/dashboard';
+import AppBar from './containers/navBar';
 // import { Provider } from 'react-redux';
 
 const theme = createTheme({

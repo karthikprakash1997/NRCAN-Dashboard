@@ -1,4 +1,5 @@
 import { Grid } from '@mui/material';
+
 import Stats from './stats';
 import CentralSection from './centralContent';
 

@@ -1,10 +1,11 @@
 import { Box, Grid, Paper, Typography } from '@mui/material';
-import StatsCards from '../../../components/statCards';
-import PieChart from '../../../components/charts/pieChart.ts';
 import { FaTools } from 'react-icons/fa';
 import { SiGoogleanalytics } from 'react-icons/si';
 import { BsGlobeAmericas, BsClock } from 'react-icons/bs';
 import { MdNumbers } from 'react-icons/md';
+
+import StatsCards from '../../../components/statCards';
+import PieChart from '../../../components/charts/pieChart.ts';
 import { formatNumberWithAbbreviation } from '../../../utils/numberFormatter';
 
 const Stats = () => {

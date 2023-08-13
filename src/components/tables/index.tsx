@@ -13,6 +13,6 @@ const Table = () => {
       {/* </Provider> */}
     </>
   );
-}
+};
 
 export default Table;

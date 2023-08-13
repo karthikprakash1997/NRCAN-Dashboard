@@ -1,1 +1,1 @@
-export * from './pieChart.ts'
+export * from './pieChart.ts';
