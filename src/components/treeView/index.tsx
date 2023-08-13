@@ -2,13 +2,13 @@ import TreeView from '@mui/lab/TreeView';
 import TreeItem from '@mui/lab/TreeItem';
 import { Checkbox } from '@mui/material';
 
-interface RenderTree {
+interface IRenderTree {
   id: string;
   name: string;
-  children?: readonly RenderTree[];
+  children?: readonly IRenderTree[];
 }
 
-const data: RenderTree = {
+const data: IRenderTree = {
   id: 'root',
   name: 'Parent',
   children: [
@@ -29,20 +29,52 @@ const data: RenderTree = {
           name: 'Child - 4'
         }
       ]
+    },
+    {
+      id: '5',
+      name: 'Child - 5',
+      children: [
+        {
+          id: '6',
+          name: 'Child - 6'
+        },
+        {
+          id: '7',
+          name: 'Child - 7'
+        }
+      ]
+    },
+    {
+      id: '8',
+      name: 'Child - 8',
+      children: [
+        {
+          id: '9',
+          name: 'Child - 9'
+        },
+        {
+          id: '10',
+          name: 'Child - 10'
+        }
+      ]
     }
   ]
 };
 
 export const RichObjectTreeView = () => {
-  const renderTree = (nodes: RenderTree) => (
+  const renderTree = (nodes: IRenderTree) => (
     <TreeItem key={nodes.id} nodeId={nodes.id} label={nodes.name}>
       {Array.isArray(nodes.children) ? nodes.children.map((node) => renderTree(node)) : null}
     </TreeItem>
   );
 
   return (
+    // <Box sx={{ flexGrow: 1, overflow:'auto' }}>
     <TreeView
-      aria-label="rich object"
+      aria-label="controlled"
+      // aria-expanded
+      expanded={['root', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10']}
+      multiSelect
       //   defaultCollapseIcon={
       //     <Checkbox
       //       checked={true}
@@ -58,7 +90,7 @@ export const RichObjectTreeView = () => {
       //       // onChange={handleChange1}
       //     />
       //   }
-      defaultExpanded={['1']}
+      // defaultExpanded={['1']}
       defaultCollapseIcon={
         <Checkbox
           checked
@@ -73,16 +105,17 @@ export const RichObjectTreeView = () => {
           // onChange={handleChange1}
         />
       }
-      defaultEndIcon={
-        <Checkbox
-          checked={false}
-          indeterminate={false}
-          // onChange={handleChange1}
-        />
-      }
+      // defaultEndIcon={
+      //   <Checkbox
+      //     checked={false}
+      //     indeterminate={false}
+      //     // onChange={handleChange1}
+      //   />
+      // }
       //   sx={{ height: 110, flexGrow: 1, maxWidth: 400, overflowY: 'auto' }}
     >
       {renderTree(data)}
     </TreeView>
+    // </Box>
   );
 };

@@ -7,18 +7,18 @@ const PieChart = ({ props }: { props: IPieChartTypes }) => {
   const chartOptions = {
     chart: {
       type: 'pie',
-      width: props.height, // Set the width of the chart
-      height: props.width, // Set the height of the chart
-      borderRadius: 12,
-      zoom: 2
+      width: props.height || '100%', // Set the width of the chart
+      height: props.width || '100%', // Set the height of the chart
+      borderRadius: 12
+      // zoom: 2
     },
-    title: {
+    title: props.title || {
       text: undefined // No title
     },
-    subtitle: {
-      useHTML: true,
-      verticalAlign: 'middle'
-    },
+    // subtitle: {
+    //   useHTML: true,
+    //   verticalAlign: 'middle'
+    // },
     credits: {
       enabled: false
     },
@@ -31,7 +31,18 @@ const PieChart = ({ props }: { props: IPieChartTypes }) => {
     },
 
     tooltip: {
-      enabled: true
+      enabled: true,
+      // formatter: function():any {
+      //     return '<b>' + this.series.name + '</b><br/>' +
+      //         this.point.name + ': ' + this.point.y;
+      // }
+      formatter(): any {
+        const formatterCallback = this as any;
+        // if (formatterCallback && formatterCallback?.points?.length) {
+        return `${formatterCallback.point.name}:${formatterCallback.point.y}`;
+        // }
+        // return '';
+      }
     },
 
     // plotOptions: {
@@ -54,7 +65,7 @@ const PieChart = ({ props }: { props: IPieChartTypes }) => {
     //   }
     // },
     plotOptions: props.plotOptions,
-    colors: ['#FCE700', '#F8C4B4', '#f6e1ea', '#B8E8FC', '#BCE29E'],
+    colors: props.colors,
     // series: [
     //   {
     //     type: 'pie',

@@ -7,7 +7,7 @@ import { IMaps } from './maps.types';
 
 highchartsMap(Highcharts);
 
-const Map = ({ props }: { props: IMaps }) => {
+const Map = ({ props, handleMapClick }: { props: IMaps; handleMapClick: (data: { isOpen: boolean; modelType: 'filter' | 'detail'; modelData?: any }) => void }) => {
   const [mapOptioin, setMapOptions] = useState<any>({});
   const chartRef = useRef<any>(null);
 
@@ -135,7 +135,7 @@ const Map = ({ props }: { props: IMaps }) => {
         point: {
           events: {
             click(e: any) {
-              console.log(e.point, 'e');
+              handleMapClick({ isOpen: true, modelData: e, modelType: 'detail' });
             }
           }
         },

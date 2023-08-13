@@ -1,19 +1,26 @@
-import { Box, Card, Grid, Icon, Tooltip, Typography } from '@mui/material';
+import { Grid, Typography } from '@mui/material';
 
 import { IStatCardsTypes } from './statCards.types';
 
 const StatsCards = ({ props }: { props: IStatCardsTypes }) => {
   const { background, title, subTitle, Content, Icon } = props;
   return (
-    <Grid height={80} sx={{ boxShadow: 5, borderRadius: 3 }} bgcolor={'white'} item style={{ display: 'flex', alignItems: 'center' }}>
+    <Grid
+      key={Math.random()}
+      height={80}
+      sx={{ boxShadow: 5, borderRadius: 3, ':hover': { marginTop: -0.5, transition: 10 }, transition: 5 }}
+      bgcolor={'white'}
+      item
+      style={{ display: 'flex', alignItems: 'center' }}
+    >
       <Grid display={'flex'} alignItems={'center'} justifyContent={'center'} margin={1} height={'3.5rem'} width={'7rem'} sx={{ boxShadow: 5, borderRadius: 3 }} style={{ background }} marginTop={-6}>
         {Icon}
       </Grid>
       <Grid width={'-webkit-fill-available'}>
-        <Typography variant="h6" color="CaptionText">
+        <Typography component={'div'} variant="h6" color="CaptionText">
           {title}
         </Typography>
-        <Typography variant="body2" color="textSecondary">
+        <Typography component={'div'} variant="body2" color="textSecondary">
           {subTitle}
         </Typography>
       </Grid>

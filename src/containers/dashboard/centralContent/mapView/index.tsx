@@ -1,11 +1,11 @@
 import { Box, Button, ButtonGroup, Grid, Typography } from '@mui/material';
-import { useState } from 'react';
+import { useLayoutEffect, useState } from 'react';
 import { BiFilter } from 'react-icons/bi';
 
 import Map from '../../../../components/map';
 import { IMaps } from '../../../../components/map/maps.types';
 
-const MapView = ({ handleModelChange }: { handleModelChange: () => void }) => {
+const MapView = ({ handleModelChange }: { handleModelChange: (data: { isOpen: boolean; modelType: 'filter' | 'detail'; modelData?: any }) => void }) => {
   const [view, setView] = useState<IMaps>({
     backgroundColor: '#4b96af',
     projection: 'WebMercator'
@@ -24,6 +24,14 @@ const MapView = ({ handleModelChange }: { handleModelChange: () => void }) => {
       });
     }
   };
+
+  const scrollX = window.scrollX;
+  const scrollY = window.scrollY;
+
+  useLayoutEffect(() => {
+    window.scrollTo(scrollX, scrollY);
+  });
+
   return (
     <>
       <Box sx={{ boxShadow: 5, borderRadius: 3 }} bgcolor={view.backgroundColor}>
@@ -40,10 +48,10 @@ const MapView = ({ handleModelChange }: { handleModelChange: () => void }) => {
                 3D
               </Button>
             </ButtonGroup>
-            <BiFilter size={30} color="white" cursor={'pointer'} onClick={handleModelChange} />
+            <BiFilter size={30} color="white" cursor={'pointer'} onClick={() => handleModelChange({ isOpen: true, modelType: 'filter' })} />
           </Grid>
         </Box>
-        <Map props={view} />
+        <Map props={view} handleMapClick={handleModelChange} />
       </Box>
     </>
   );

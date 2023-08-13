@@ -5,8 +5,10 @@ export interface IChartTypes {
 }
 
 export interface IPieChartTypes {
-  height: number;
-  width: number;
-  plotOptions: any;
-  series: Highcharts.SeriesPieOptions[];
+  height?: number;
+  width?: number;
+  plotOptions?: any;
+  series?: Highcharts.SeriesPieOptions[];
+  title?: Highcharts.TitleOptions;
+  colors?: any;
 }

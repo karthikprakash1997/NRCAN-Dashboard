@@ -1,16 +1,18 @@
-import { Box, Fade, Grid, Modal, Tab, Tabs } from '@mui/material';
+import { Box, Fade, Grid, Modal, Tab, Tabs, Typography, Button } from '@mui/material';
 import { useState } from 'react';
 
 import MapView from './mapView';
-import ModalView from './modalView';
+import DetailView from './detailedView';
 import { RichObjectTreeView } from '../../../components';
+import { CheckboxLabels } from '../../../components/countrySelect';
 
 const style = {
   position: 'absolute' as 'absolute',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 400,
+  width: '25%',
+  height: '60%',
   bgcolor: 'white',
   // border: '2px solid #000',
   boxShadow: 24,
@@ -19,12 +21,10 @@ const style = {
 };
 
 const CentralSection = () => {
-  const [open, setOpen] = useState(false);
-  const [detailModelOpen, setDetailModelOpen] = useState(false);
+  const [modelState, setModelState] = useState<{ isOpen: boolean; modelType: 'filter' | 'detail'; modelData?: any }>({ isOpen: false, modelType: 'filter' });
 
   const [tabs, setTabs] = useState(0);
-  const handleChange = () => setOpen(!open);
-  // const handleDetailmodelChange = () => setDetailModelOpen(!detailModelOpen);
+  const handleChange = (newModelState: { isOpen: boolean; modelType: 'filter' | 'detail'; modelData?: any }) => setModelState(newModelState);
 
   return (
     <>
@@ -39,8 +39,8 @@ const CentralSection = () => {
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
-        open={open}
-        onClose={() => setOpen(false)}
+        open={modelState.isOpen}
+        onClose={() => setModelState({ ...modelState, isOpen: !modelState.isOpen })}
         closeAfterTransition
         // slots={{ backdrop: Backdrop }}
         slotProps={{
@@ -49,20 +49,33 @@ const CentralSection = () => {
           }
         }}
       >
-        <Fade in={open}>
+        <Fade in={modelState.isOpen}>
           <div>
             <Box sx={style}>
-              <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                <Tabs value={tabs} onChange={(_1, newValue) => setTabs(newValue)} aria-label="basic tabs example">
-                  <Tab label="category" />
-                  <Tab label="Country" />
-                </Tabs>
-              </Box>
-              <Box>{tabs === 0 ? <RichObjectTreeView /> : 'Country Select'}</Box>
-              <Box>{/* <RichObjectTreeView /> */}</Box>
+              {modelState.modelType === 'filter' ? (
+                <>
+                  <Typography variant="h6"> Filter </Typography>
+                  <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+                    <Tabs value={tabs} onChange={(_1, newValue) => setTabs(newValue)} aria-label="basic tabs example">
+                      <Tab label="category" />
+                      <Tab label="Country" />
+                    </Tabs>
+                  </Box>
+                  <Box height={'70%'}>{tabs === 0 ? <RichObjectTreeView /> : <CheckboxLabels />}</Box>
+                  <Grid display={'flex'} justifyContent={'flex-end'} alignItems={'self-end'} columnGap={1}>
+                    <Button onClick={() => setModelState({ ...modelState, isOpen: false })} variant="contained" color="success">
+                      Submit
+                    </Button>
+                    <Button onClick={() => setModelState({ ...modelState, isOpen: false })} variant="outlined" color="error">
+                      Cancel
+                    </Button>
+                  </Grid>
+                </>
+              ) : (
+                <DetailView />
+              )}
             </Box>
           </div>
-          {/* <Typography >Hello</Typography> */}
         </Fade>
       </Modal>
     </>

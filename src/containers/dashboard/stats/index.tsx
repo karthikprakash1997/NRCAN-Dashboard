@@ -1,4 +1,4 @@
-import { Box, Grid, Paper, Typography } from '@mui/material';
+import { Box, Grid, Typography } from '@mui/material';
 import { FaTools } from 'react-icons/fa';
 import { SiGoogleanalytics } from 'react-icons/si';
 import { BsGlobeAmericas, BsClock } from 'react-icons/bs';
@@ -21,7 +21,7 @@ const Stats = () => {
         <Box display={'flex'} alignItems={'center'} alignContent={'center'}>
           <BsClock fontSize={'0.75rem'} style={{ marginTop: 3 }} />
           <Typography variant="body1" marginLeft={0.5}>
-            updated just now
+            Updated Just Now
           </Typography>
         </Box>
       ),
@@ -38,28 +38,26 @@ const Stats = () => {
     {
       title: 'Origin Analysis',
       tooltipText: 'Text for tooltip',
-      subTitle: 'Last updated at',
+      subTitle: 'Percentage Change: 10%',
       Content: (
         <PieChart
           props={{
             height: 80,
             width: 80,
+            colors: ['#FCE700', '#F8C4B4', '#f6e1ea', '#B8E8FC', '#BCE29E'],
             plotOptions: {
+              pie: {
+                size: 50
+              },
               series: {
-                borderWidth: 0,
-                colorByPoint: true,
+                // borderWidth: 0,
+                // colorByPoint: true,
                 type: 'pie',
                 size: '100%',
-                innerSize: '80%',
+                // innerSize: '%',
                 dataLabels: {
-                  enabled: false,
-                  crop: false,
-                  distance: '-10%',
-                  style: {
-                    fontWeight: 'bold',
-                    fontSize: '16px'
-                  },
-                  connectorWidth: 0
+                  enabled: false
+                  //   connectorWidth: 0
                 }
               }
             },
@@ -68,11 +66,8 @@ const Stats = () => {
                 type: 'pie',
                 // name: startYear,
                 data: [
-                  { name: 'Category A', y: 45 },
-                  { name: 'Category B', y: 25 },
-                  { name: 'Category C', y: 15 },
-                  { name: 'Category D', y: 10 },
-                  { name: 'Category E', y: 5 }
+                  { name: 'Available', y: 80 },
+                  { name: 'Unavailable', y: 20 }
                 ]
               }
             ]
@@ -85,46 +80,13 @@ const Stats = () => {
     {
       title: 'Origin Count',
       tooltipText: 'Text for tooltip',
-      subTitle: 'Last updated at',
+      subTitle: 'Top Rank: USA',
       Content: (
-        <PieChart
-          props={{
-            height: 80,
-            width: 80,
-            plotOptions: {
-              series: {
-                borderWidth: 0,
-                colorByPoint: true,
-                type: 'pie',
-                size: '100%',
-                innerSize: '80%',
-                dataLabels: {
-                  enabled: false,
-                  crop: false,
-                  distance: '-10%',
-                  style: {
-                    fontWeight: 'bold',
-                    fontSize: '16px'
-                  },
-                  connectorWidth: 0
-                }
-              }
-            },
-            series: [
-              {
-                type: 'pie',
-                // name: startYear,
-                data: [
-                  { name: 'Category A', y: 45 },
-                  { name: 'Category B', y: 25 },
-                  { name: 'Category C', y: 15 },
-                  { name: 'Category D', y: 10 },
-                  { name: 'Category E', y: 5 }
-                ]
-              }
-            ]
-          }}
-        />
+        <>
+          <Typography margin={1} variant="h4">
+            {formatNumberWithAbbreviation(100)}
+          </Typography>{' '}
+        </>
       ),
       Icon: <BsGlobeAmericas size={25} color="white" />,
       background: 'linear-gradient(195deg, #66BB6A, #43A047)'
@@ -132,35 +94,44 @@ const Stats = () => {
     {
       title: 'Parts Count',
       tooltipText: 'Text for tooltip',
-      subTitle: 'Last updated at',
+      subTitle: 'Total categories: 5',
       Content: (
         <PieChart
           props={{
             height: 80,
             width: 80,
+            title: {
+              text: '45',
+              align: 'center',
+              verticalAlign: 'middle'
+              // y: 30
+            },
+            colors: ['#FCE700', '#F8C4B4', '#f6e1ea', '#B8E8FC', '#BCE29E'],
             plotOptions: {
+              pie: {
+                size: 50
+              },
               series: {
                 borderWidth: 0,
                 colorByPoint: true,
                 type: 'pie',
                 size: '100%',
                 innerSize: '80%',
-                dataLabels: {
-                  enabled: false,
-                  crop: false,
-                  distance: '-10%',
-                  style: {
-                    fontWeight: 'bold',
-                    fontSize: '16px'
-                  },
-                  connectorWidth: 0
-                }
+                // dataLabels: {
+                //   enabled: false,
+                //   crop: false,
+                //   distance: '-10%',
+                //   style: {
+                //     fontWeight: 'bold',
+                //     fontSize: '16px'
+                //   },
+                //   connectorWidth: 0
+                // }
               }
             },
             series: [
               {
                 type: 'pie',
-                // name: startYear,
                 data: [
                   { name: 'Category A', y: 45 },
                   { name: 'Category B', y: 25 },
@@ -184,7 +155,7 @@ const Stats = () => {
         <Grid container spacing={3}>
           {statsCardData.map((it) => {
             return (
-              <Grid item xs={12} md={3} sm={6} xl={3}>
+              <Grid key={it.title} item xs={12} md={3} sm={6} xl={3}>
                 <StatsCards props={it} />
               </Grid>
             );
