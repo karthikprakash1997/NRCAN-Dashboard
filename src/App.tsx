@@ -1,26 +1,36 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Dashboard from './containers/dashboard';
+import AppBar from './containers/navBar';
+import { Grid } from '@mui/material';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+// import { Provider } from 'react-redux';
 
-function App() {
+const theme = createTheme({
+  typography: {
+    fontFamily: ['-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', '"Helvetica Neue"', 'Arial', 'sans-serif', '"Apple Color Emoji"', '"Segoe UI Emoji"', '"Segoe UI Symbol"'].join(',') // Specify the font family
+  }
+});
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <Grid bgcolor={'#f0f2f5'} height={'100%'}>
+        {/* // <div style={{backgroundColor: '#f8f8f8'}}> */}
+
+        {/* <Provider> */}
+        {/* <PersistGate loading={'Loading ...'} persistor={persistor}> */}
+        {/* <ToastContainer hideProgressBar /> */}
+        {/* <ErrorBoundary> */}
+        {/* <Router /> */}
+        {/* </ErrorBoundary> */}
+        {/* </PersistGate> */}
+        {/* </Provider> */}
+        <AppBar />
+        <Dashboard />
+        {/* </div> */}
+      </Grid>
+    </ThemeProvider>
   );
-}
+};
 
 export default App;
