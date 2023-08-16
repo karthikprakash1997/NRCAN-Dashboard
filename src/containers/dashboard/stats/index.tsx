@@ -7,6 +7,8 @@ import { MdNumbers } from 'react-icons/md';
 import StatsCards from '../../../components/statCards';
 import PieChart from '../../../components/charts/pieChart.ts';
 import { formatNumberWithAbbreviation } from '../../../utils/numberFormatter';
+import { BiSolidDownArrow, BiSolidUpArrow } from 'react-icons/bi';
+import { FlagIcon } from 'react-flag-kit';
 
 const Stats = () => {
   // const DataCount = () => (
@@ -18,11 +20,11 @@ const Stats = () => {
       title: 'Data Count',
       tooltipText: 'Text for tooltip',
       subTitle: (
-        <Box display={'flex'} alignItems={'center'} alignContent={'center'}>
-          <BsClock fontSize={'0.75rem'} style={{ marginTop: 3 }} />
+        <Box display={'flex'} columnGap={1} alignItems={'center'} alignContent={'center'}>
           <Typography variant="body1" marginLeft={0.5}>
             Updated Just Now
           </Typography>
+          <BsClock fontSize={'0.75rem'} style={{ marginTop: 3 }} />
         </Box>
       ),
       Content: (
@@ -38,7 +40,14 @@ const Stats = () => {
     {
       title: 'Origin Analysis',
       tooltipText: 'Text for tooltip',
-      subTitle: 'Percentage Change: 10%',
+      subTitle: (
+        <Box display={'flex'} columnGap={1} alignItems={'center'}>
+          <Typography component={'div'} variant="body2" color="textSecondary">
+            Percentage Change: 10%
+          </Typography>
+          <BiSolidDownArrow color="red" />
+        </Box>
+      ),
       Content: (
         <PieChart
           props={{
@@ -80,7 +89,14 @@ const Stats = () => {
     {
       title: 'Origin Count',
       tooltipText: 'Text for tooltip',
-      subTitle: 'Top Rank: USA',
+      subTitle: (
+        <Box display={'flex'} columnGap={1} alignItems={'center'}>
+          <Typography component={'div'} variant="body2" color="textSecondary">
+            Top Rank: USA
+          </Typography>
+          <FlagIcon code="US" size={12} />
+        </Box>
+      ),
       Content: (
         <>
           <Typography margin={1} variant="h4">
@@ -94,7 +110,14 @@ const Stats = () => {
     {
       title: 'Parts Count',
       tooltipText: 'Text for tooltip',
-      subTitle: 'Total categories: 5',
+      subTitle: (
+        <Box display={'flex'} columnGap={1} alignItems={'center'}>
+          <Typography component={'div'} variant="body2" color="textSecondary">
+            Total categories: 5
+          </Typography>
+          <BiSolidUpArrow color="green" />
+        </Box>
+      ),
       Content: (
         <PieChart
           props={{
@@ -116,7 +139,7 @@ const Stats = () => {
                 colorByPoint: true,
                 type: 'pie',
                 size: '100%',
-                innerSize: '80%',
+                innerSize: '80%'
                 // dataLabels: {
                 //   enabled: false,
                 //   crop: false,

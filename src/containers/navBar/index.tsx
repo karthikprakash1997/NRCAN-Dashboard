@@ -1,4 +1,4 @@
-import { Box, Grid, Paper, Typography } from '@mui/material';
+import { Box, Grid, Typography } from '@mui/material';
 import { AiFillHome } from 'react-icons/ai';
 
 const AppBar = () => {

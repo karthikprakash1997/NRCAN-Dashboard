@@ -1,4 +1,4 @@
-import { Box, Fade, Grid, Modal, Tab, Tabs, Typography, Button } from '@mui/material';
+import { Box, Fade, Grid, Modal, Tab, Tabs, Typography, Button, Paper } from '@mui/material';
 import { useState } from 'react';
 
 import MapView from './mapView';
@@ -30,7 +30,7 @@ const CentralSection = () => {
     <>
       <Grid margin={3}>
         <Grid container spacing={3}>
-          <Grid item xs={12} md={9} sm={8} xl={12}>
+          <Grid item xs={12}>
             <MapView handleModelChange={handleChange} />
           </Grid>
         </Grid>
@@ -61,8 +61,31 @@ const CentralSection = () => {
                       <Tab label="Country" />
                     </Tabs>
                   </Box>
-                  <Box height={'70%'}>{tabs === 0 ? <RichObjectTreeView /> : <CheckboxLabels />}</Box>
-                  <Grid display={'flex'} justifyContent={'flex-end'} alignItems={'self-end'} columnGap={1}>
+                  <Grid width={'100%'} height={'70%'}>
+                    <Paper
+                      style={{
+                        height: '100%',
+                        width: '100%',
+                        overflowY: 'auto',
+                        borderRadius: 0,
+                        boxShadow: 'none',
+                        // '&::-webkit-scrollbar': {
+                        //   width: '0.4em'
+                        // },
+                        // '&::-webkit-scrollbar-track': {
+                        //   boxShadow: 'inset 0 0 6px rgba(0,0,0,0.00)',
+                        //   webkitBoxShadow: 'inset 0 0 6px rgba(0,0,0,0.00)'
+                        // },
+                        // '&::-webkit-scrollbar-thumb': {
+                        //   backgroundColor: 'rgba(0,0,0,.1)',
+                        //   outline: '1px solid slategrey'
+                        // }
+                      }}
+                    >
+                      {tabs === 0 ? <RichObjectTreeView /> : <CheckboxLabels />}
+                    </Paper>
+                  </Grid>
+                  <Grid marginTop={2} display={'flex'} justifyContent={'flex-end'} alignItems={'self-end'} columnGap={1}>
                     <Button onClick={() => setModelState({ ...modelState, isOpen: false })} variant="contained" color="success">
                       Submit
                     </Button>

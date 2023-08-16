@@ -4,6 +4,7 @@ import { BiFilter } from 'react-icons/bi';
 
 import Map from '../../../../components/map';
 import { IMaps } from '../../../../components/map/maps.types';
+// import { ChartComponent } from '../../../../components/mapV1';
 
 const MapView = ({ handleModelChange }: { handleModelChange: (data: { isOpen: boolean; modelType: 'filter' | 'detail'; modelData?: any }) => void }) => {
   const [view, setView] = useState<IMaps>({
@@ -51,6 +52,7 @@ const MapView = ({ handleModelChange }: { handleModelChange: (data: { isOpen: bo
             <BiFilter size={30} color="white" cursor={'pointer'} onClick={() => handleModelChange({ isOpen: true, modelType: 'filter' })} />
           </Grid>
         </Box>
+        {/* <ChartComponent identifier='hello' options={{}}/> */}
         <Map props={view} handleMapClick={handleModelChange} />
       </Box>
     </>

@@ -31,58 +31,58 @@ const Map = ({ props, handleMapClick }: { props: IMaps; handleMapClick: (data: {
       // height: '39%',
       backgroundColor: props.backgroundColor,
       // plotBackgroundColor: '#4b96af',
-      borderRadius: 12
+      borderRadius: 12,
       // polar: true,
       // type: 'line',
 
       // spacing: [0, 0, 0, 0]
-      // events:{
-      //   render(){
-      //     // this.getOptions('graticule')
-      //     const chart = this as any;
-      //       let verb = "animate";
-      //       if (!chart.sea) {
-      //         chart.sea = chart.renderer
-      //           .circle()
-      //           .attr({
-      //             fill: {
-      //               radialGradient: {
-      //                 cx: 0.4,
-      //                 cy: 0.4,
-      //                 r: 1
-      //               },
-      //               stops: [
-      //                 [0, "#dbf4fe"]
-      //               ]
-      //             },
-      //             zIndex: 0
-      //           })
-      //           .add(chart.get("graticule")?.group);
-      //         verb = "attr";
-      //       }
+      events: {
+        render() {
+          // this.getOptions('graticule')
+          const chart = this as any;
+          if (props.projection !== 'Orthographic') return;
+          let verb = 'animate';
+          if (chart) {
+            if (!chart.sea) {
+              chart.sea = chart.renderer
+                .circle()
+                .attr({
+                  fill: {
+                    radialGradient: {
+                      cx: 0.4,
+                      cy: 0.4,
+                      r: 1
+                    },
+                    stops: [[0, '#009dc4']]
+                  },
+                  zIndex: 0
+                })
+                .add(chart.get('graticule')?.group);
+              verb = 'attr';
+            }
 
-      //       const bounds = chart.get("graticule")?.bounds,
-      //         p1 = chart?.mapView?.projectedUnitsToPixels({
-      //           x: bounds?.x1,
-      //           y: bounds?.y1
-      //         }),
-      //         p2 = chart?.mapView.projectedUnitsToPixels({
-      //           x: bounds?.x2,
-      //           y: bounds?.y2
-      //         });
-      //         console.log(bounds, p1,p2)
-      //         if(bounds){
-      //           chart?.sea[verb]({
-      //             cx: (p1?.x + p2?.x) / 2,
-      //             cy: (p1?.y + p2?.y) / 2,
-      //             r: Math.min(p2?.x - p1?.x, p1?.y - p2?.y) / 2
-      //              });
-      //         }
+            const bounds = chart.get('graticule')?.bounds,
+              p1 = chart?.mapView?.projectedUnitsToPixels({
+                x: bounds?.x1,
+                y: bounds?.y1
+              }),
+              p2 = chart?.mapView.projectedUnitsToPixels({
+                x: bounds?.x2,
+                y: bounds?.y2
+              });
+            if (bounds) {
+              chart?.sea[verb]({
+                cx: (p1?.x + p2?.x) / 2,
+                cy: (p1?.y + p2?.y) / 2,
+                r: Math.min(p2?.x - p1?.x, p1?.y - p2?.y) / 2
+              });
+            }
+          }
 
-      //       console.log(chart.sea[verb],verb, "chart.sea")
-      //       // console.log(chart.)
-      //     }
-      // }
+          console.log(chart.sea[verb], verb, 'chart.sea');
+          // console.log(chart.)
+        }
+      }
     },
     legend: {
       enabled: false
@@ -123,10 +123,28 @@ const Map = ({ props, handleMapClick }: { props: IMaps; handleMapClick: (data: {
       // zoom: 1.8
     },
     series: [
+      ...(props.projection === 'Orthographic'
+        ? [
+            {
+              name: 'Graticule',
+              id: 'graticule',
+              type: 'mapline',
+              data: getGraticule()
+              // events: {
+              //     // afterAnimate
+              // },
+              // nullColor: 'rgba(0, 0, 0, 0.05)',
+              // accessibility: {
+              //     enabled: false
+              // },
+              // enableMouseTracking: false
+            }
+          ]
+        : []),
       {
         // Use the gb-all map with no data as a basemap
         name: 'Basemap',
-        id: 'graticule',
+        id: 'data',
         data: [
           ['in', 5],
           ['au', 10],
