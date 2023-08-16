@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/NRCAN-Dashboard/static/css/main.e6c13ad2.css",
-    "main.js": "/NRCAN-Dashboard/static/js/main.4da5cf23.js",
+    "main.js": "/NRCAN-Dashboard/static/js/main.7729e9d0.js",
     "static/js/787.38db22dd.chunk.js": "/NRCAN-Dashboard/static/js/787.38db22dd.chunk.js",
     "index.html": "/NRCAN-Dashboard/index.html",
     "main.e6c13ad2.css.map": "/NRCAN-Dashboard/static/css/main.e6c13ad2.css.map",
-    "main.4da5cf23.js.map": "/NRCAN-Dashboard/static/js/main.4da5cf23.js.map",
+    "main.7729e9d0.js.map": "/NRCAN-Dashboard/static/js/main.7729e9d0.js.map",
     "787.38db22dd.chunk.js.map": "/NRCAN-Dashboard/static/js/787.38db22dd.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e6c13ad2.css",
-    "static/js/main.4da5cf23.js"
+    "static/js/main.7729e9d0.js"
   ]
 }
