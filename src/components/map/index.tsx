@@ -46,6 +46,17 @@ const Map = ({ props, handleMapClick }: { props: IMaps; handleMapClick: (data: {
             if (!chart.sea) {
               chart.sea = chart.renderer
                 .circle()
+                // .attr({
+                //   fill: {
+                //     radialGradient: {
+                //       cx: 0.4,
+                //       cy: 0.4,
+                //       r: 1
+                //     },
+                //     stops: [[0, '#009dc4']]
+                //   },
+                //   zIndex: 0
+                // })
                 .attr({
                   fill: {
                     radialGradient: {
@@ -53,9 +64,12 @@ const Map = ({ props, handleMapClick }: { props: IMaps; handleMapClick: (data: {
                       cy: 0.4,
                       r: 1
                     },
-                    stops: [[0, '#009dc4']]
+                    stops: [
+                      [0, 'white'],
+                      [1, '#009dc4']
+                    ]
                   },
-                  zIndex: 0
+                  zIndex: 0.5
                 })
                 .add(chart.get('graticule')?.group);
               verb = 'attr';
