@@ -23,7 +23,7 @@ const Map = ({ props, handleMapClick }: { props: IMaps; handleMapClick: (data: {
 
   const mapOptions: Highcharts.Options = {
     chart: {
-      height: '610px',
+      height: 700,
       map: mapOptioin.mapData,
       // width:'100%',
       // width:"100%",
@@ -32,14 +32,21 @@ const Map = ({ props, handleMapClick }: { props: IMaps; handleMapClick: (data: {
       backgroundColor: props.backgroundColor,
       // plotBackgroundColor: '#4b96af',
       borderRadius: 12,
+      // margin: [0,0,0,0],
+      // marginRight:0,
       // polar: true,
       // type: 'line',
 
-      // spacing: [0, 0, 0, 0]
+      // spacing: [0, 0, 0, 0],
       events: {
+        load() {
+          console.log(this,"this")
+          if (props.projection === 'Orthographic') this?.mapZoom(3);
+        },
         render() {
           // this.getOptions('graticule')
           const chart = this as any;
+          // this.mapZoom(10);
           if (props.projection !== 'Orthographic') return;
           let verb = 'animate';
           if (chart) {
@@ -92,9 +99,6 @@ const Map = ({ props, handleMapClick }: { props: IMaps; handleMapClick: (data: {
               });
             }
           }
-
-          console.log(chart.sea[verb], verb, 'chart.sea');
-          // console.log(chart.)
         }
       }
     },
@@ -132,9 +136,10 @@ const Map = ({ props, handleMapClick }: { props: IMaps; handleMapClick: (data: {
         name: props.projection
         // projectedBounds: 'world'
         // name: 'WebMercator'
-      }
+      },
+      zoom:props.projection === 'Orthographic'? undefined: 2.2,
       // center: [10, 58],
-      // zoom: 1.8
+      // zoom: 5
     },
     series: [
       ...(props.projection === 'Orthographic'
