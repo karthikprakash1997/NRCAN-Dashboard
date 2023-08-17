@@ -72,8 +72,8 @@ const Map = ({ props, handleMapClick }: { props: IMaps; handleMapClick: (data: {
                       r: 1
                     },
                     stops: [
-                      [0, 'white'],
-                      [1, '#009dc4']
+                      [0, '#009dc4'],
+                      [1, '#3944BC']
                     ]
                   },
                   zIndex: 0.5
@@ -126,8 +126,11 @@ const Map = ({ props, handleMapClick }: { props: IMaps; handleMapClick: (data: {
       min: 0,
       stops: [
         [0, '#EFEFFF'],
-        [0.5, '#f50505' as any],
+        [0.5, '#F50505' as any],
         [1, Highcharts.color('#f50505').brighten(-0.5).get()]
+        // [0, '#3DED97'],
+        // [0.5, '#234F1E' as any],
+        // [1, Highcharts.color('#234F1E').brighten(-0.5).get()]
       ]
     },
 
@@ -178,7 +181,7 @@ const Map = ({ props, handleMapClick }: { props: IMaps; handleMapClick: (data: {
         },
         // mapData: mapOptioin,
         // borderColor: '#A0A0A0',
-        nullColor: '#D3D3D3'
+        nullColor: '#9A7B4F'
       }
     ] as any
   };
